@@ -1,0 +1,99 @@
+.products {
+  margin-bottom: 40px;
+}
+
+.products .product-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-title h2 {
+  color: #444;
+  font-size: 3rem !important;
+  font-weight: 900;
+  line-height: 1.2 !important;
+  margin-bottom: 25px;
+  padding-bottom: 0 !important;
+}
+
+.section-title .title-border::before {
+  background: #c87065 none repeat scroll 0 0;
+  margin: 0 auto;
+  right: 0;
+  width: 50px;
+}
+
+.single-product {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.single-product:hover {
+  box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+.slick-next-icon.slick-arrow {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #eeeeee;
+  color: #a6a6a6;
+  font-weight: 700;
+  left: -30px;
+  height: auto;
+  line-height: 20px;
+  margin-top: -43px;
+  position: absolute;
+  top: 50%;
+  width: 35px;
+  z-index: 999;
+  transition: all 0.5s ease 0s;
+  left: auto;
+  right: -30px;
+}
+
+.slick-prev-icon.slick-arrow {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #eeeeee;
+  color: #a6a6a6;
+  font-weight: 700;
+  left: -30px;
+  height: auto;
+  line-height: 20px;
+  margin-top: -43px;
+  position: absolute;
+  top: 50%;
+  width: 35px;
+  z-index: 999;
+  transition: all 0.5s ease 0s;
+}
+
+.slick-prev-icon.slick-arrow:hover {
+  background: #c8a165 none repeat scroll 0 0;
+  border: 2px solid #c8a165;
+  color: #fff;
+}
+
+.slick-next-icon.slick-arrow:hover {
+  background: #c8a165 none repeat scroll 0 0;
+  border: 2px solid #c8a165;
+  color: #fff;
+}
+
+.single-product .post-title a{
+    text-decoration: none;
+}
+@media (max-width: 576px) {
+  .product-area .container {
+    width: 300px;
+  }
+
+  .slick-prev-icon.slick-arrow {
+    left: -12px;
+  }
+  .slick-next-icon.slick-arrow {
+    right: -13px;
+  }
+  .products {
+    margin-bottom: 0;
+  }
+}

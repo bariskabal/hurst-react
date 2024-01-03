@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "name": "Analogue Resin Strap",
+        "discount": 30,
+        "img": {
+            "singleImage": "/src/assets/img/discount/1.jpg"
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does eiusmodes tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venim, quis nostrud exercitation ullamco laboris."
+    },
+    {
+        "id": 2,
+        "name": "Analogue Resin Strap",
+        "discount": 20,
+        "img": {
+            "singleImage": "/src/assets/img/discount/2.jpg"
+        },
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed does eiusmodes tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim venim, quis nostrud exercitation ullamco laboris."
+    }
+]

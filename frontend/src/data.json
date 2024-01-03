@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Analogue Resin Strap",
+        "price": 108.00,
+        "img": {
+            "singleImage": "/src/assets/img/product/1.jpg"
+        },
+        "title": "sale",
+        "category": "Furniture"
+    },
+    {
+        "id": 2,
+        "name": "Ridley High Waist",
+        "price": 108.00,
+        "img": {
+            "singleImage": "/src/assets/img/product/2.jpg"
+        },
+        "title": "new",
+        "category": "Garden"
+    },
+    {
+        "id": 3,
+        "name": "Blush Beanie",
+        "price": 108.00,
+        "img": {
+            "singleImage": "/src/assets/img/product/3.jpg"
+        },
+        "title": "sale",
+        "category": "Office"
+    },
+    {
+        "id": 4,
+        "name": "Mercury Tee",
+        "price": 108.00,
+        "img": {
+            "singleImage": "/src/assets/img/product/4.jpg"
+        },
+        "title": "sale",
+        "category": "Furniture"
+    },
+    {
+        "id": 5,
+        "name": "Mercury Tee",
+        "price": 108.00,
+        "img": {
+            "singleImage": "/src/assets/img/product/4.jpg"
+        },
+        "title": "new",
+        "category": "bedroom"
+    }
+]

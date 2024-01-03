@@ -1,0 +1,149 @@
+.products {
+  margin-bottom: 40px;
+}
+
+.products .product-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-title h2 {
+  color: #444;
+  font-size: 3rem !important;
+  font-weight: 900;
+  line-height: 1.2 !important;
+  margin-bottom: 25px;
+  padding-bottom: 0 !important;
+}
+
+.section-title .title-border::before {
+  background: #c87065 none repeat scroll 0 0;
+  margin: 0 auto;
+  right: 0;
+  width: 50px;
+}
+
+.single-product {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.single-product:hover {
+  box-shadow: 1px 8px 15px rgba(0, 0, 0, 0.12);
+}
+
+.slick-next-icon.slick-arrow {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #eeeeee;
+  color: #a6a6a6;
+  font-weight: 700;
+  left: -30px;
+  height: auto;
+  line-height: 20px;
+  margin-top: -43px;
+  position: absolute;
+  top: 50%;
+  width: 35px;
+  z-index: 999;
+  transition: all 0.5s ease 0s;
+  left: auto;
+  right: -30px;
+}
+
+.slick-prev-icon.slick-arrow {
+  background: #fff none repeat scroll 0 0;
+  border: 2px solid #eeeeee;
+  color: #a6a6a6;
+  font-weight: 700;
+  left: -30px;
+  height: auto;
+  line-height: 20px;
+  margin-top: -43px;
+  position: absolute;
+  top: 50%;
+  width: 35px;
+  z-index: 999;
+  transition: all 0.5s ease 0s;
+}
+
+.slick-prev-icon.slick-arrow:hover {
+  background: #c8a165 none repeat scroll 0 0;
+  border: 2px solid #c8a165;
+  color: #fff;
+}
+
+.slick-next-icon.slick-arrow:hover {
+  background: #c8a165 none repeat scroll 0 0;
+  border: 2px solid #c8a165;
+  color: #fff;
+}
+
+.single-product .post-title a{
+    text-decoration: none;
+}
+
+.button-one {
+  background: #efefef none repeat scroll 0 0;
+  display: inline-block!important;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  padding: 0 15px;
+  position: relative;
+  color: #fff!important;
+}
+
+.slick-dots {
+  width: auto!important;
+    bottom: 1rem!important;
+    right: 3rem!important;
+}
+
+.slick-dots li button::before {
+  font-size: .7rem!important;
+  color: #cccccc!important;
+}
+
+.slick-dots .slick-active button::before {
+  font-size: .7rem!important;
+  color: #C8A165 !important;
+}
+
+@media (max-width: 576px) {
+  .product-area .container {
+    width: 300px;
+  }
+
+  .slick-prev-icon.slick-arrow {
+    left: -12px;
+  }
+  .slick-next-icon.slick-arrow {
+    right: -13px;
+  }
+  .discount {
+    padding-top: 0!important;
+  }
+}
+
+@media (max-width: 767px) {
+  .onsale {
+    height: 50px!important;
+    margin: 5px!important;
+    padding-top: 10px!important;
+    width: 50px!important;
+  }
+  .single-product .discount-info a {
+    font-size: 12px!important;
+    font-weight: 500!important;
+  }
+}
+
+@media (max-width: 992px) {
+  .single-product .discount-info h1 {
+      font-size: 1.5rem;
+  }
+  .discount-info {
+    margin-top: 10px;
+  }
+}

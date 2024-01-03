@@ -1,0 +1,25 @@
+.blog-area .title-border {
+    font-size: 30px!important;
+}
+
+.blog-area .like-desc {
+    color: #666!important;
+    font-weight: 400!important;
+    line-height: 20px!important;
+    font-family: Lato,sans-serif;
+}
+
+.blog-area .text-dark-red {
+    color: #c87065!important;
+    font-family: Lato,sans-serif;
+}
+
+.blog-area .like-share a:hover {
+    color: #c87065!important;
+}
+
+@media (min-width: 1300px) {
+.container {
+    max-width: 1200px!important;
+}
+}
