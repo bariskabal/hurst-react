@@ -12,13 +12,13 @@ export default function CartTabItem({item}) {
     setCartItemCount(cartItemCount + 1);
     dispatch(addToCart(item));
   };
-
+  console.log(item.quantity)
   const handleDecrement = () => {
-    if (cartItemCount > 1) {
-      setCartItemCount(cartItemCount - 1);
+    if (item.quantity > 1) {
+      setCartItemCount(item.quantity - 1);
       dispatch(removeFromCart(item));
     } else {
-      dispatch(removeFromAll(item));
+      dispatch(removeFromCart(item));
     }
   };
 
@@ -58,7 +58,7 @@ export default function CartTabItem({item}) {
           </div>
           <input
             type="text"
-            value={cartItemCount}
+            value={item.quantity}
             onChange={handleInputChange}
             className="cart-plus-minus-box"
           />
