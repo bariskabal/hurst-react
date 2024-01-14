@@ -1,7 +1,12 @@
 import Proptypes from "prop-types";
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../../../actions/cartActions';
 
 export default function CartModalItem({cartItem}) {
-    console.log(cartItem);
+  const dispatch = useDispatch();
+  const handleRemoveFromCart = (productItem) => {
+    dispatch(removeFromCart(productItem));
+  };
     return(
         <div className="single-cart clearfix">
           <div className="cart-photo">
@@ -11,12 +16,12 @@ export default function CartModalItem({cartItem}) {
           </div>
           <div className="cart-info">
             <h5>
-              <a href="#">dummy product name</a>
+              <a href="#">{cartItem.name}</a>
             </h5>
-            <p className="mb-0">Price : $ 300.00</p>
-            <p className="mb-0">Qty : 01 </p>
+            <p className="mb-0">Price : $ {cartItem.price}</p>
+            <p className="mb-0">Qty : {cartItem.quantity} </p>
             <span className="cart-delete">
-              <a href="#">
+              <a onClick={() => handleRemoveFromCart(cartItem)}>
                 <i className="zmdi zmdi-close"></i>
               </a>
             </span>

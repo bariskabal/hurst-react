@@ -2,7 +2,6 @@ import Proptypes from "prop-types";
 import "./SearchModal.css"
 
 export default function SearchModal({searchModal,setSearchModal}) {
-    console.log(searchModal);
   return (
     <div className={`sidebar-search animated ${searchModal ? 'slideInDown' : 'slideOutUp'}`}>
       <div className="table">

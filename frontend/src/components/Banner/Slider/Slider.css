@@ -274,10 +274,6 @@
     padding-bottom: 3rem;
   }
 
-  .product-area .title-border {
-    font-size: 1.7rem!important;
-  }
-
   .slider .slider-dots {
     display: none;
   } 
@@ -295,10 +291,6 @@
   }
   .slider-item .container {
     padding-left: 2rem;
-  }
-
-  .product-area .title-border {
-    font-size: 1.7rem!important;
   }
 
   .slider .slider-dots {

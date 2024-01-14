@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "img": {
+            "singleImage": "/src/assets/img/single-product/download.jpg"
+        }
+    },
+    {
+        "id": 2,
+        "img": {
+            "singleImage": "/src/assets/img/single-product/1.jpg"
+        }
+    },
+    {
+        "id": 3,
+        "img": {
+            "singleImage": "/src/assets/img/single-product/2.jpg"
+        }
+    },
+    {
+        "id": 4,
+        "img": {
+            "singleImage": "/src/assets/img/single-product/download.jpg"
+        }
+    }
+]

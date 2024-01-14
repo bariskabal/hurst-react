@@ -1,13 +1,21 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../actions/cartActions';
 
-export default function ProductsTabItem({ productItem }) {
+export default function ProductsTabItem({ productItem, setModalProduct, setProductDetailModals }) {
+  const dispatch = useDispatch();
+  const handleAddFromCart = (productItem) => {
+    dispatch(addToCart(productItem));
+  };
+
   return (
     <div className="single-product col-xl-3 col-lg-4 col-md-6">
       <div className="product-img">
         <span className={`pro-label ${productItem.title}-label`}>{productItem.title}</span>
-        <a href="single-product.html">
+        <Link to={"/product/123"}>
           <img src={productItem.img.singleImage} alt="" />
-        </a>
+        </Link>
         <div className="product-action clearfix">
           <a
             href="wishlist.html"
@@ -22,6 +30,7 @@ export default function ProductsTabItem({ productItem }) {
             data-bs-toggle="modal"
             data-bs-target="#productModal"
             title="Quick View"
+            onClick={() => {setModalProduct(productItem),setProductDetailModals(true)}}
           >
             <i className="zmdi zmdi-zoom-in"></i>
           </a>
@@ -34,7 +43,7 @@ export default function ProductsTabItem({ productItem }) {
             <i className="zmdi zmdi-refresh"></i>
           </a>
           <a
-            href="cart.html"
+            onClick={() => handleAddFromCart(productItem)}
             data-bs-toggle="tooltip"
             data-placement="top"
             title="Add To Cart"
@@ -77,4 +86,6 @@ export default function ProductsTabItem({ productItem }) {
 
 ProductsTabItem.propTypes = {
   productItem: PropTypes.object,
+  setModalProduct: PropTypes.func,
+  setProductDetailModals: PropTypes.func,
 };

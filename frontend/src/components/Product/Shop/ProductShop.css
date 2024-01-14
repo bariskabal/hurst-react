@@ -1,0 +1,23 @@
+.price_slider_amount {
+    display: flex;
+    row-gap: 1rem;
+}
+
+.price_slider_amount .price_slider_item {
+    row-gap: .3rem;
+}
+
+.price_slider_amount .price_slider_item input {
+    border-color: transparent;
+    background-color: #f6f6f6;
+}
+
+.filter-button {
+    background-color: #c87065!important;
+    color: #fff;
+}
+
+.filter-button:hover {
+    background-color: #c8a165!important;
+    color: #fff!important;
+}

@@ -1,0 +1,36 @@
+.cart-page-menu {
+    margin-bottom: 30px!important;
+    column-gap: 1.5rem;
+}
+
+.cart-page-menu li a.active {
+    color: #ffffff!important;
+}
+
+.cart-page-menu.d-flex li {
+    padding: 0!important;
+    width: 33%;
+}
+
+.payment-button::before {
+    content: 'proceed to payment';
+}
+
+@media (max-width: 768px) {
+    .cart-page-menu {
+      display: flex;
+      flex-direction: column;
+    }
+    .cart-page-menu li:last-child {
+        margin-bottom: 15px!important;
+    }
+
+    .single-product {
+        display: flex!important;
+        flex-direction: row;
+    }
+
+    .product-info {
+        margin-top: 0;
+    }
+  }

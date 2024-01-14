@@ -60,7 +60,7 @@ const sliderSettings = {
   ],
 };
 
-export default function ProductSlider() {
+export default function ProductSlider({ setModalProduct, setProductDetailModals }) {
   return (
     <div className="product-area pt-80 pb-35 products">
       <div className="container">
@@ -68,10 +68,10 @@ export default function ProductSlider() {
           <h2 className="title-border">Featured Products</h2>
           <p>Summer Collection New Morden Design</p>
         </div>
-        <div className="product-wrapper product-carousel">
+        <div className="product-wrapper product-carousel slider-product">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductSliderItem productItem={product} key={product.id} />
+              <ProductSliderItem productItem={product} setProductDetailModals={setProductDetailModals} setModalProduct={setModalProduct} key={product.id} />
             ))}
           </Slider>
         </div>
@@ -79,3 +79,8 @@ export default function ProductSlider() {
     </div>
   );
 }
+
+ProductSlider.propTypes = {
+  setModalProduct: PropTypes.func,
+  setProductDetailModals: PropTypes.func,
+};

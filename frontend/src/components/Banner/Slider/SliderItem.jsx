@@ -1,4 +1,5 @@
 import Proptypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function SliderItem({ imageSrc }) {
   return (
@@ -20,9 +21,9 @@ export default function SliderItem({ imageSrc }) {
           the majority have suffered alteration in some form, by injected
           humour, or randomised words which dont look even slightly believable
         </p>
-        <a href="#" className="btn btn-lg" data-content="Shop Now">
+        <Link to={"/shop"} className="btn btn-lg" data-content="Shop Now">
           Shop Now
-        </a>
+        </Link>
       </div>
     </div>
   );

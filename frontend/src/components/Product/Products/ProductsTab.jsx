@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import "./ProductsTab.css";
 import products from "../../../data.json";
 import ProductsTabItem from "./ProductsTabItem";
+import PropTypes from "prop-types";
 
-export default function Products() {
+export default function Products({setModalProduct,setProductDetailModals}) {
   const [activeTab, setActiveTab] = useState("new-arrivals");
 
   const handleTabClick = (e, tab) => {
@@ -77,9 +78,9 @@ export default function Products() {
           <div className="col-lg-12">
             <div className="tab-content">
               <div className="tab-pane active">
-                <div className="row">
+                <div className="row slider-product">
                   {products.map((product) => (
-                    <ProductsTabItem key={product.id} productItem={product} />
+                    <ProductsTabItem key={product.id} productItem={product} setProductDetailModals={setProductDetailModals} setModalProduct={setModalProduct} />
                   ))}
                 </div>
               </div>
@@ -90,3 +91,9 @@ export default function Products() {
     </div>
   );
 }
+
+
+Products.propTypes = {
+  setProductDetailModals: PropTypes.func,
+  setModalProduct: PropTypes.func
+};

@@ -1,5 +1,7 @@
 import Proptypes from "prop-types";
 import LoginModal from "../../Modal/Auth/LoginModal";
+import { Link } from "react-router-dom";
+import { IoLogOut } from "react-icons/io5";
 
 export default function RightBar({
   setSearchModal,
@@ -7,6 +9,8 @@ export default function RightBar({
   setLoginModal,
   loginModal,
 }) {
+
+  const user = localStorage?.getItem("token");
 
   return (
     <div className="sidebar-account d-none d-md-block">
@@ -23,24 +27,26 @@ export default function RightBar({
                 <i className="zmdi zmdi-search"></i>
               </a>
             </li>
-            <li
+            {user ? <li><Link to={"/auth/registration"}>
+              <IoLogOut />
+              </Link></li>:<li
               onMouseEnter={() => setLoginModal(!loginModal)}
               onMouseLeave={() => setLoginModal(!loginModal)}
             >
-              <a href="#" title="Login">
+              <Link to={"/auth/registration"}>
                 <i className="zmdi zmdi-lock"></i>
-              </a>
+              </Link>
               <LoginModal loginModal={loginModal}/>
-            </li>
-            <li>
-              <a href="my-account.html" title="My-Account">
+            </li>}
+            {user && <li>
+              <Link to={'/account'} title="My-Account">
                 <i className="zmdi zmdi-account"></i>
-              </a>
-            </li>
+              </Link>
+            </li>}
             <li>
-              <a href="wishlist.html" title="Wishlist">
+              <Link to={"/wishlist"} title="Wishlist">
                 <i className="zmdi zmdi-favorite"></i>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

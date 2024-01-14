@@ -4,13 +4,18 @@ import CartModal from "../../Modal/Cart/CartModal";
 import SearchModal from "../../Modal/Search/SearchModal";
 import Proptypes from "prop-types";
 import "./Header.css";
+import { Link } from "react-router-dom";
+import { IoLogOut } from "react-icons/io5";
+import { useSelector } from 'react-redux';
 
 export default function Header({setSearchModal,searchModal}) {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleMenuMobil, setToggleMenuMobil] = useState(false);
   const [toggleHomeMenu, setToggleHomeMenu] = useState(false);
-
+  const cartItems = useSelector(state => state.cart.items);
   const [hovered, setHovered] = useState(false);
+
+  const user = localStorage.getItem("token");
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -36,20 +41,22 @@ export default function Header({setSearchModal,searchModal}) {
                         </a>
                         <SearchModal setSearchModal={setSearchModal} searchModal={searchModal}/>
                       </li>
-                      <li>
-                        <a href="login.html">
+                      {user ? <li><Link to={"/auth/registration"}>
+                        <IoLogOut  style={{position:"relative",bottom:"3px"}}/>
+                        </Link></li>:<li>
+                        <Link to={"/auth/registration"}>
                           <i className="zmdi zmdi-lock"></i>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="my-account.html">
+                        </Link>
+                      </li>}
+                      {user && <li>
+                        <Link to={'/account'} title="My-Account">
                           <i className="zmdi zmdi-account"></i>
-                        </a>
-                      </li>
+                        </Link>
+                      </li>}
                       <li>
-                        <a href="wishlist.html">
-                          <i className="zmdi zmdi-favorite"></i>
-                        </a>
+                      <Link to={"/wishlist"} title="Wishlist">
+                        <i className="zmdi zmdi-favorite"></i>
+                      </Link>
                       </li>
                     </ul>
                   </div>
@@ -65,9 +72,9 @@ export default function Header({setSearchModal,searchModal}) {
             <div className="row">
               <div className="col-md-4 offset-md-4 col-7">
                 <div className="logo text-md-center">
-                  <a href="index.html">
+                  <Link to={"/"}>
                     <img src="/src/assets/img/logo/logo.png" alt="" />
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="col-md-4 col-5">
@@ -81,7 +88,7 @@ export default function Header({setSearchModal,searchModal}) {
                         href="#"
                       >
                         <IoMdCart />
-                        <span>3</span>
+                        <span>{cartItems?.length >0 ? cartItems.length : 0}</span>
                       </a>
                       <CartModal hoveredCartModal={hovered} />
                     </li>
