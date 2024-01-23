@@ -46,7 +46,6 @@ export default function CartTabItem({item}) {
               </a>
             </h4>
             <p className="mb-0">Color : Black</p>
-            <p className="mb-0">Size : SL</p>
           </div>
         </div>
       </td>

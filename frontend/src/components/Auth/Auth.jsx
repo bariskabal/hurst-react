@@ -18,12 +18,12 @@ export default function Auth() {
             <HeadingBanner pageName="Registration"/>
             <div className="login-area  pt-80 pb-80">
 				<div className="container">
-					<form action="#">	
+					<div>	
 						<div className="row">
 							<Login />
                             <Register />
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
             <Footer />

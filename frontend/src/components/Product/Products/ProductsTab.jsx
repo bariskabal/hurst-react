@@ -1,19 +1,91 @@
 import { useState, useEffect } from "react";
 import "./ProductsTab.css";
-import products from "../../../data.json";
 import ProductsTabItem from "./ProductsTabItem";
-import PropTypes from "prop-types";
+import ProductService from "../../../services/productService";
 
-export default function Products({setModalProduct,setProductDetailModals}) {
+export default function Products() {
   const [activeTab, setActiveTab] = useState("new-arrivals");
-
+  const [products,setProducts] = useState([])
   const handleTabClick = (e, tab) => {
     setActiveTab(tab);
     e.preventDefault();
   };
 
   useEffect(() => {
-    //tab değiştikçe ürünleri çek
+
+    async function getMostLikedProducts() {
+      try {
+        const response = await ProductService.getMostLikedProducts();
+        if (response.success) {
+          setProducts(response.data); // Verileri state'e ayarla
+        } else {
+          // Hata durumunda bir şey yapabilirsiniz
+          console.error("Ürünleri çekerken hata oluştu:", response.message);
+        }
+      } catch (error) {
+        // Hata durumunda bir şey yapabilirsiniz
+        console.error("Ürünleri çekerken hata oluştu:", error);
+      }
+    }
+
+    async function getBestSellerProducts() {
+      try {
+        const response = await ProductService.getBestSellerProducts();
+        console.log(response)
+        if (response.success) {
+          setProducts(response.data); // Verileri state'e ayarla
+        } else {
+          // Hata durumunda bir şey yapabilirsiniz
+          console.error("Ürünleri çekerken hata oluştu:", response.message);
+        }
+      } catch (error) {
+        // Hata durumunda bir şey yapabilirsiniz
+        console.error("Ürünleri çekerken hata oluştu:", error);
+      }
+    }
+
+    async function getDiscountsProducts() {
+      try {
+        const response = await ProductService.getDiscountsProducts();
+        console.log(response)
+        if (response.success) {
+          setProducts(response.data); // Verileri state'e ayarla
+        } else {
+          // Hata durumunda bir şey yapabilirsiniz
+          console.error("Ürünleri çekerken hata oluştu:", response.message);
+        }
+      } catch (error) {
+        // Hata durumunda bir şey yapabilirsiniz
+        console.error("Ürünleri çekerken hata oluştu:", error);
+      }
+    }
+
+    async function getNewArrivals() {
+      try {
+        const response = await ProductService.getNewArrivals();
+        if (response.success) {
+          setProducts(response.data); // Verileri state'e ayarla
+        } else {
+          // Hata durumunda bir şey yapabilirsiniz
+          console.error("Ürünleri çekerken hata oluştu:", response.message);
+        }
+      } catch (error) {
+        // Hata durumunda bir şey yapabilirsiniz
+        console.error("Ürünleri çekerken hata oluştu:", error);
+      }
+    }
+    getNewArrivals();
+
+    if(activeTab == "new-arrivals") {
+      getNewArrivals();
+    } else if(activeTab == "best-seller") {
+      getBestSellerProducts();
+    } else if(activeTab == "most-view") {
+      getMostLikedProducts();
+    } else if(activeTab == "discounts") {
+      getDiscountsProducts();
+    }
+    console.log(activeTab)
   }, [activeTab]);
 
   return (
@@ -80,7 +152,7 @@ export default function Products({setModalProduct,setProductDetailModals}) {
               <div className="tab-pane active">
                 <div className="row slider-product">
                   {products.map((product) => (
-                    <ProductsTabItem key={product.id} productItem={product} setProductDetailModals={setProductDetailModals} setModalProduct={setModalProduct} />
+                    <ProductsTabItem key={product._id} productItem={product} />
                   ))}
                 </div>
               </div>
@@ -91,9 +163,3 @@ export default function Products({setModalProduct,setProductDetailModals}) {
     </div>
   );
 }
-
-
-Products.propTypes = {
-  setProductDetailModals: PropTypes.func,
-  setModalProduct: PropTypes.func
-};

@@ -706,6 +706,10 @@ pre {
 .single-product:hover {
   box-shadow: 1px 25px 54px rgba(0, 0, 0, .12);
 }
+
+.ant-popover {
+  z-index: 9999999999999;
+}
 .product-slider .single-product:hover {
   box-shadow: 1px 8px 15px rgba(0, 0, 0, .12);
 }

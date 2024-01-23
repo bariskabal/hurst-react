@@ -1,10 +1,14 @@
 // store/store.js
 import { createStore, combineReducers } from 'redux';
 import cartReducer, { initialState as cartInitialState } from '../reducers/cartReducer';
+import modalReducer from '../reducers/modalReducer';
+import authReducer from '../reducers/authReducer';
 
 // rootReducer'ı combineReducers ile oluşturun.
 const rootReducer = combineReducers({
   cart: cartReducer,
+  modal: modalReducer,
+  auth: authReducer
   // Diğer reducer'larınız buraya eklenebilir.
 });
 

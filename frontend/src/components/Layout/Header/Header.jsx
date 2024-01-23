@@ -1,21 +1,36 @@
 import { useState } from "react";
 import { IoMdCart } from "react-icons/io";
 import CartModal from "../../Modal/Cart/CartModal";
-import SearchModal from "../../Modal/Search/SearchModal";
-import Proptypes from "prop-types";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { IoLogOut } from "react-icons/io5";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
+import { toggleSearchModal } from "../../../actions/modalActions";
+import { logoutUser } from "../../../actions/authActions";
+import { message, Popover } from "antd";
 
-export default function Header({setSearchModal,searchModal}) {
+export default function Header() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [toggleMenuMobil, setToggleMenuMobil] = useState(false);
   const [toggleHomeMenu, setToggleHomeMenu] = useState(false);
-  const cartItems = useSelector(state => state.cart.items);
+  const cartItems = useSelector((state) => state.cart.items);
   const [hovered, setHovered] = useState(false);
 
-  const user = localStorage.getItem("token");
+  const dispatch = useDispatch();
+
+  const token = useSelector((state) => state.auth.token);
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch(logoutUser());
+    message.success("Çıkış işlemi başarılı");
+  };
+
+  const content = (
+    <div className="d-flex flex-column">
+      <p>Çıkış yapmak istediğinize emin misiniz?</p>
+      <button className="btn bg-primary text-white" onClick={handleLogout}>Çıkış yap</button>
+    </div>
+  );
 
   const handleMouseEnter = () => {
     setHovered(true);
@@ -36,27 +51,44 @@ export default function Header({setSearchModal,searchModal}) {
                   <div className="table-cell">
                     <ul className="mb-0">
                       <li>
-                        <a onClick={() => setSearchModal(!searchModal)} className="search-open" href="#">
+                        <a
+                          onClick={() => dispatch(toggleSearchModal())}
+                          className="search-open"
+                          href="#"
+                        >
                           <i className="zmdi zmdi-search"></i>
                         </a>
-                        <SearchModal setSearchModal={setSearchModal} searchModal={searchModal}/>
                       </li>
-                      {user ? <li><Link to={"/auth/registration"}>
-                        <IoLogOut  style={{position:"relative",bottom:"3px"}}/>
-                        </Link></li>:<li>
-                        <Link to={"/auth/registration"}>
-                          <i className="zmdi zmdi-lock"></i>
-                        </Link>
-                      </li>}
-                      {user && <li>
-                        <Link to={'/account'} title="My-Account">
-                          <i className="zmdi zmdi-account"></i>
-                        </Link>
-                      </li>}
+                      {token ? (
+                        <li>
+                          <Popover
+                            content={content}
+                            placement="bottom"
+                            trigger="click"
+                          >
+                            <Link>
+                              <IoLogOut className="mb-1" />
+                            </Link>
+                          </Popover>
+                        </li>
+                      ) : (
+                        <li>
+                          <Link to={"/auth/registration"}>
+                            <i className="zmdi zmdi-lock"></i>
+                          </Link>
+                        </li>
+                      )}
+                      {token && (
+                        <li>
+                          <Link to={"/account"} title="My-Account">
+                            <i className="zmdi zmdi-account"></i>
+                          </Link>
+                        </li>
+                      )}
                       <li>
-                      <Link to={"/wishlist"} title="Wishlist">
-                        <i className="zmdi zmdi-favorite"></i>
-                      </Link>
+                        <Link to={"/wishlist"} title="Wishlist">
+                          <i className="zmdi zmdi-favorite"></i>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -88,7 +120,9 @@ export default function Header({setSearchModal,searchModal}) {
                         href="#"
                       >
                         <IoMdCart />
-                        <span>{cartItems?.length >0 ? cartItems.length : 0}</span>
+                        <span>
+                          {cartItems?.length > 0 ? cartItems.length : 0}
+                        </span>
                       </a>
                       <CartModal hoveredCartModal={hovered} />
                     </li>
@@ -601,8 +635,3 @@ export default function Header({setSearchModal,searchModal}) {
     </>
   );
 }
-
-Header.propTypes = {
-  setSearchModal: Proptypes.func,
-  searchModal: Proptypes.bool,
-};

@@ -2,20 +2,26 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../actions/cartActions';
+import { openModalWithProduct } from "../../../actions/modalActions";
+import Image from "../../../utils/Image";
 
-export default function ProductSliderItem({ productItem, setModalProduct, setProductDetailModals }) {
+export default function ProductSliderItem({ productItem}) {
   
   const dispatch = useDispatch();
   const handleAddFromCart = (productItem) => {
     dispatch(addToCart(productItem));
   };
+  const handleOpenModal = () => {
+    dispatch(openModalWithProduct(productItem));
+};
   
   return (
     <div className="single-product">
       <div className="product-img">
-        <span className={`pro-label ${productItem.title}-label`}>{productItem.title}</span>
+        {productItem.discount > 0 && <span className={`pro-label sale-label`}>Discounted</span>}
         <Link to={"/product/123"}>
-          <img src={productItem.img.singleImage} alt="" />
+          <Image style={{minHeight:"252px"}} imageUrl={productItem.stockStatuses[0].images[0]}
+          />
         </Link>
         <div className="product-action clearfix">
           <a
@@ -30,7 +36,8 @@ export default function ProductSliderItem({ productItem, setModalProduct, setPro
             data-bs-toggle="modal"
             data-bs-target="#productModal"
             title="Quick View"
-            onClick={() => {setModalProduct(productItem),setProductDetailModals(true)}}
+            style={{cursor:"pointer"}}
+            onClick={() => {handleOpenModal(productItem)}}
           >
             <i className="zmdi zmdi-zoom-in"></i>
           </a>
@@ -57,7 +64,7 @@ export default function ProductSliderItem({ productItem, setModalProduct, setPro
           <h4 className="post-title floatleft">
             <a href="#">{productItem.name}</a>
           </h4>
-          <p className="category-info floatright hidden-sm d-none d-md-block">Furniture</p>
+          <p className="category-info floatright hidden-sm d-none d-md-block">{productItem.category.name}</p>
         </div>
         <div className="fix">
           <span className="pro-price floatleft">${productItem.price}</span>
@@ -85,7 +92,5 @@ export default function ProductSliderItem({ productItem, setModalProduct, setPro
 }
 
 ProductSliderItem.propTypes = {
-  productItem: PropTypes.object,
-  setModalProduct: PropTypes.func,
-  setProductDetailModals: PropTypes.func,
+  productItem: PropTypes.object
 };

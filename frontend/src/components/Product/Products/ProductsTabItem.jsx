@@ -2,19 +2,25 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../actions/cartActions';
+import { openModalWithProduct } from "../../../actions/modalActions";
+import Image from "../../../utils/Image";
 
-export default function ProductsTabItem({ productItem, setModalProduct, setProductDetailModals }) {
+export default function ProductsTabItem({ productItem}) {
   const dispatch = useDispatch();
   const handleAddFromCart = (productItem) => {
     dispatch(addToCart(productItem));
   };
+  const handleOpenModal = () => {
+    dispatch(openModalWithProduct(productItem));
+};
 
   return (
     <div className="single-product col-xl-3 col-lg-4 col-md-6">
       <div className="product-img">
-        <span className={`pro-label ${productItem.title}-label`}>{productItem.title}</span>
-        <Link to={"/product/123"}>
-          <img src={productItem.img.singleImage} alt="" />
+        {productItem.discount > 0 && <span className={`pro-label sale-label`}>Discounted</span>}
+        <Link to={`/product/${productItem._id}`}>
+          <Image style={{minHeight:"317px"}} imageUrl={productItem.stockStatuses[0].images[0]}
+            />
         </Link>
         <div className="product-action clearfix">
           <a
@@ -30,7 +36,7 @@ export default function ProductsTabItem({ productItem, setModalProduct, setProdu
             data-bs-toggle="modal"
             data-bs-target="#productModal"
             title="Quick View"
-            onClick={() => {setModalProduct(productItem),setProductDetailModals(true)}}
+            onClick={() => {handleOpenModal(productItem)}}
           >
             <i className="zmdi zmdi-zoom-in"></i>
           </a>
@@ -57,10 +63,10 @@ export default function ProductsTabItem({ productItem, setModalProduct, setProdu
           <h4 className="post-title floatleft">
             <a href="#">{productItem.name}</a>
           </h4>
-          <p className="category-info floatright hidden-sm">{productItem.category}</p>
+          <p className="category-info floatright hidden-sm">{productItem.category.name}</p>
         </div>
         <div className="fix">
-          <span className="pro-price floatleft">$ {productItem.price}</span>
+          <span className="pro-price floatleft">$ {productItem.discount > 0 ? productItem.price * (1 - productItem.discount / 100) :productItem.price}</span>
           <span className="pro-rating floatright">
             <a href="#">
               <i className="zmdi zmdi-star"></i>

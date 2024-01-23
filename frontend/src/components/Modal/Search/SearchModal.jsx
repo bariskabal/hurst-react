@@ -1,7 +1,11 @@
-import Proptypes from "prop-types";
 import "./SearchModal.css"
+import { useSelector,useDispatch } from 'react-redux';
+import { toggleSearchModal } from "../../../actions/modalActions";
 
-export default function SearchModal({searchModal,setSearchModal}) {
+export default function SearchModal() {
+  const searchModal = useSelector(state => state.modal.searchModal);
+  const dispatch = useDispatch();
+
   return (
     <div className={`sidebar-search animated ${searchModal ? 'slideInDown' : 'slideOutUp'}`}>
       <div className="table">
@@ -10,7 +14,7 @@ export default function SearchModal({searchModal,setSearchModal}) {
             <div className="row">
               <div className="col-md-8 offset-md-2 p-0">
                 <div className="search-form-wrap">
-                  <button onClick={() => setSearchModal(!searchModal)} className="close-search">
+                  <button onClick={() => dispatch(toggleSearchModal())} className="close-search">
                     <i className="zmdi zmdi-close"></i>
                   </button>
                   <form action="#">
@@ -29,7 +33,3 @@ export default function SearchModal({searchModal,setSearchModal}) {
   );
 }
 
-SearchModal.propTypes = {
-    searchModal: Proptypes.bool,
-    setSearchModal: Proptypes.func
-}

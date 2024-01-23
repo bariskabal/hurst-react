@@ -119,7 +119,7 @@
   background: #c8a165 none repeat scroll 0 0;
   bottom: 0;
   color: #fff;
-  content: attr(data-text);
+  content: 'LOGIN';
   left: -100%;
   position: absolute;
   text-align: center;
@@ -146,6 +146,48 @@
 .button-one:hover::before,
 .button-one:focus::before,
 .button-one:active::before {
+  left: 0;
+  visibility: visible;
+}
+.button-two {
+  background: #efefef none repeat scroll 0 0;
+  display: inline-block;
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  padding: 0 15px;
+  position: relative;
+}
+.button-two::before {
+  background: #c8a165 none repeat scroll 0 0;
+  bottom: 0;
+  color: #fff;
+  content: 'REGISTER';
+  left: -100%;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  visibility: hidden;
+  z-index: 11;
+}
+.button-two::after {
+  bottom: 0;
+  content: "";
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+.button-two:hover,
+.button-two:focus,
+.button-two:active {
+  color: #fff;
+}
+.button-two:hover::before,
+.button-two:focus::before,
+.button-two:active::before {
   left: 0;
   visibility: visible;
 }

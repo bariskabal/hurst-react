@@ -12,7 +12,7 @@ export default function Cart() {
 
   const [cartPane, setCartPane] = useState('cart')
 
-  document.body.style.backgroundColor = "#f6f6f6";
+  document.body.classList.add('bg-dark-white');
 
   return (
     <React.Fragment>
@@ -28,7 +28,6 @@ export default function Cart() {
                     <a
                       onClick={() => setCartPane('cart')}
                       className={`${cartPane == 'cart' && "active"}`}
-                      href="#shopping-cart"
                       data-bs-toggle="tab"
                     >
                       shopping cart
@@ -37,14 +36,14 @@ export default function Cart() {
                   <li>
                     <a 
                      onClick={() => setCartPane('Checkout')}
-                    className={`${cartPane == 'Checkout' && "active"}`} href="#check-out" data-bs-toggle="tab">
+                    className={`${cartPane == 'Checkout' && "active"}`}  data-bs-toggle="tab">
                       check out
                     </a>
                   </li>
                   <li>
                     <a
                      onClick={() => setCartPane('Order Complete')}  
-                    className={`${cartPane == 'Order Complete' && "active"}`} href="#order-complete" data-bs-toggle="tab">
+                    className={`${cartPane == 'Order Complete' && "active"}`} data-bs-toggle="tab">
                       order complete
                     </a>
                   </li>

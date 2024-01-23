@@ -23,7 +23,7 @@ export default function ProductDetails() {
     imgIndex: 0,
   });
 
-  document.body.style.backgroundColor = "#f6f6f6";
+  document.body.classList.add('bg-dark-white');
   return (
     <React.Fragment>
       <Header />

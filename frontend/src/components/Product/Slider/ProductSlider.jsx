@@ -1,9 +1,9 @@
 import Slider from "react-slick";
 import PropTypes from "prop-types";
-import products from "../../../data.json";
 import ProductSliderItem from "./ProductSliderItem";
 import "./ProductSlider.css";
-
+import ProductService from "../../../services/productService";
+import {useState, useEffect} from "react"
 function NextBtn({ onClick }) {
   return (
     <button onClick={onClick} className="slick-next-icon slick-arrow glide__arrow glide__arrow--left">
@@ -60,7 +60,30 @@ const sliderSettings = {
   ],
 };
 
-export default function ProductSlider({ setModalProduct, setProductDetailModals }) {
+export default function ProductSlider() {
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    // Tab değiştikçe ürünleri çek
+    async function fetchProducts() {
+      try {
+        const response = await ProductService.getFeaturedProducts();
+        console.log(response)
+        if (response.success) {
+          setProducts(response.data); // Verileri state'e ayarla
+        } else {
+          // Hata durumunda bir şey yapabilirsiniz
+          console.error("Ürünleri çekerken hata oluştu:", response.message);
+        }
+      } catch (error) {
+        // Hata durumunda bir şey yapabilirsiniz
+        console.error("Ürünleri çekerken hata oluştu:", error);
+      }
+    }
+
+    fetchProducts(); // fetchProducts fonksiyonunu çağır
+  }, []);
+  
+
   return (
     <div className="product-area pt-80 pb-35 products">
       <div className="container">
@@ -71,7 +94,7 @@ export default function ProductSlider({ setModalProduct, setProductDetailModals 
         <div className="product-wrapper product-carousel slider-product">
           <Slider {...sliderSettings}>
             {products.map((product) => (
-              <ProductSliderItem productItem={product} setProductDetailModals={setProductDetailModals} setModalProduct={setModalProduct} key={product.id} />
+              <ProductSliderItem productItem={product} key={product._id} />
             ))}
           </Slider>
         </div>
@@ -79,8 +102,3 @@ export default function ProductSlider({ setModalProduct, setProductDetailModals 
     </div>
   );
 }
-
-ProductSlider.propTypes = {
-  setModalProduct: PropTypes.func,
-  setProductDetailModals: PropTypes.func,
-};

@@ -4,7 +4,7 @@ import Footer from "../Layout/Footer/Footer";
 import Header from "../Layout/Header/Header";
 
 export default function WishList() {
-  document.body.style.backgroundColor = "#f6f6f6";
+  document.body.classList.add('bg-dark-white');
 
   return (
     <React.Fragment>

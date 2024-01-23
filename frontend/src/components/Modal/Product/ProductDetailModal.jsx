@@ -1,22 +1,20 @@
-import PropTypes from "prop-types";
 import "./ProductDetailModal.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { addToCart } from "../../../actions/cartActions";
+import { closeProductModal } from '../../../actions/modalActions';
 
-export default function ProductDetailModal({
-  setProductDetailModals,
-  productDetailModals,
-  modalProduct,
-}) {
+export default function ProductDetailModal() {
   const [cartQuantity, setCartQuantity] = useState(1);
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(state => state.modal.productModal);
+  const productModal = useSelector(state => state.modal.product);
   const handleAddToCart = (e) => {
     e.preventDefault();
     const quantityNumber = parseInt(cartQuantity, 10); // Parse edilen sayıyı bir değişkene atayın.
     if (!isNaN(quantityNumber) && quantityNumber > 0) { // Geçerli bir sayı olduğundan ve 0'dan büyük olduğundan emin olun.
-      dispatch(addToCart(modalProduct, quantityNumber));
-      setProductDetailModals(false); // Modal'ı kapat
+      dispatch(addToCart(productModal, quantityNumber));
+      handleCloseModal(); // Modal'ı kapat
       setCartQuantity(1);
     } else {
       console.error('Quantity is not a valid number.');
@@ -25,13 +23,16 @@ export default function ProductDetailModal({
   const handleInputChange = (e) => {
     setCartQuantity(e.target.value);
   };
+  const handleCloseModal = () => {
+    dispatch(closeProductModal()); // Modalı kapat
+  };
   return (
-    <div id="quickview-wrapper" onClick={() => setProductDetailModals(false)}>
+    <div id="quickview-wrapper" onClick={() => handleCloseModal()}>
       <div
-        className={`modal fade overlay ${productDetailModals ? "show" : ""}`}
+        className={`modal fade overlay ${isModalOpen ? "show" : ""}`}
         id="productModal"
         role="dialog"
-        style={{ display: productDetailModals ? "block" : "none" }}
+        style={{ display: isModalOpen ? "block" : "none" }}
       >
         <div
           className="modal-dialog"
@@ -41,7 +42,7 @@ export default function ProductDetailModal({
           <div className="modal-content">
             <div className="modal-header">
               <button
-                onClick={() => setProductDetailModals(false)}
+                onClick={() => handleCloseModal()}
                 type="button"
                 className="close-modal"
                 data-bs-dismiss="modal"
@@ -153,9 +154,3 @@ export default function ProductDetailModal({
     </div>
   );
 }
-
-ProductDetailModal.propTypes = {
-  setProductDetailModals: PropTypes.func,
-  productDetailModals: PropTypes.bool,
-  modalProduct: PropTypes.object,
-};
